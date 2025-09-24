@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Bite - Otimização Digital Completa</title>
+
+    <!-- SEO básico -->
+    <meta name="description" content="Otimização digital completa para PMEs: Presença Digital, Marketing e Automação no WhatsApp. Acelere receita, leads e eficiência com a Neon Bite.">
+    <meta name="theme-color" content="#0ef">
+    <!-- Open Graph / Social (atualize a URL absoluta da imagem depois) -->
+    <meta property="og:title" content="Neon Bite — Otimização Digital Completa">
+    <meta property="og:description" content="Presença Digital, Marketing e Automação no WhatsApp para crescimento acelerado.">
+    <meta property="og:image" content="assets/og-image.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="assets/logo.png" imagesrcset type="image/png">
+
+    <!-- CSS - na raiz -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome - para ícones (SRI recomendada; ajustar depois) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <!-- Favicon - na pasta assets -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Skip link -->
+    <a class="skip-link" href="#main-content">Ir para o conteúdo principal</a>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <!-- Header/Navbar -->
+    <header class="main-header">
+        <div class="container navbar-container">
+            <div class="header-logo">
+                <a href="#hero"><img src="assets/logo.png" alt="Neon Bite Logo" decoding="async"></a>
+            </div>
+            <nav class="main-nav" aria-label="Navegação principal">
+                <ul class="nav-links" id="primary-navigation">
+                    <li><a href="#hero" aria-current="page">Início</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#benefits">Benefícios</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-container container">
+            <div class="hero-logo-wrapper">
+                <img src="assets/logo.png" alt="Neon Bite Logo" class="hero-animated-logo" fetchpriority="high" decoding="async">
+            </div>
+            <div class="hero-content">
+                <h1>A OTIMIZAÇÃO COMPLETA PODE LEVAR O SEU NEGÓCIO ÀS ALTURAS:</h1>
+                <div class="typing-text" id="typingText" aria-live="polite" aria-atomic="true"></div>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <!-- Services Carousel -->
+        <section class="services" id="services">
+            <div class="container">
+                <h2>Nossos Serviços</h2>
+                <div class="carousel-container">
+                    <div class="carousel" id="servicesCarousel" role="region" aria-roledescription="carousel" aria-label="Carrossel de serviços">
+                        <div class="service-card">
+                            <div class="card-icon">
+                                <i class="fas fa-robot" aria-hidden="true"></i>
+                            </div>
+                            <h3>ATENDIMENTO AUTOMATIZADO</h3>
+                            <ul>
+                                <li>Chatbot para WhatsApp</li>
+                                <li>Triagem e agendamento automático</li>
+                                <li>Venda e pagamento no WhatsApp</li>
+                                <li>Otimização essencial do seu negócio</li>
+                            </ul>
+                        </div>
+                        <div class="service-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                            </div>
+                            <h3>MARKETING DIGITAL</h3>
+                            <ul>
+                                <li>Tráfego pago</li>
+                                <li>Criação de conteúdo para suas publis</li>
+                                <li>Edição profissional para suas publis</li>
+                                <li>Propaganda direcionada</li>
+                            </ul>
+                        </div>
+                        <div class="service-card">
+                            <div class="card-icon">
+                                <i class="fas fa-globe" aria-hidden="true"></i>
+                            </div>
+                            <h3>PRESENÇA DIGITAL</h3>
+                            <ul>
+                                <li>Identidade visual digital</li>
+                                <li>Lojas virtuais completas</li>
+                                <li>Sites institucionais responsivos</li>
+                                <li>Landing page de performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="nav-btn prev" type="button" onclick="changeSlide(-1)" aria-label="Slide anterior" aria-controls="servicesCarousel">‹</button>
+                        <button class="nav-btn next" type="button" onclick="changeSlide(1)" aria-label="Próximo slide" aria-controls="servicesCarousel">›</button>
+                    </div>
+                    <div class="carousel-dots" role="group" aria-label="Navegação do carrossel">
+                        <span class="dot active" role="button" tabindex="0" onclick="currentSlideSet(1)" aria-label="Ir para o slide 1" aria-controls="servicesCarousel" aria-selected="true"></span>
+                        <span class="dot" role="button" tabindex="0" onclick="currentSlideSet(2)" aria-label="Ir para o slide 2" aria-controls="servicesCarousel" aria-selected="false"></span>
+                        <span class="dot" role="button" tabindex="0" onclick="currentSlideSet(3)" aria-label="Ir para o slide 3" aria-controls="servicesCarousel" aria-selected="false"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="benefits">
+            <div class="container">
+                <div class="section-intro">
+                    <h2>Como nosso mix de serviços agrega valor ao seu negócio</h2>
+                    <p>Adotar um mix de <strong>Presença Digital</strong> (site otimizado, SEO e redes sociais), <strong>Marketing Digital</strong> (campanhas segmentadas, anúncios pagos e e-mail/SMS) e <strong>Automação no WhatsApp Business</strong> (chatbots para triagem, captação e gestão de leads, além de integração com CRMs) gera impacto direto no crescimento das pequenas e médias empresas.</p>
+                    <p>Enquanto negócios tradicionais crescem em média <strong>2 a 5% ao ano</strong>, empresas que adotam essas soluções alcançam aumento de até <strong>30% na receita</strong> e <strong>50% em eficiência operacional</strong>.</p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-block">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                        <h3>🚀 Aumento de Receita e Vendas</h3>
+                        <ul>
+                            <li><strong>Crescimento Anual:</strong> +400 a 1.500% (20–30% vs. 2–5%), com ganhos médios de +R$ 216k a R$ 300k/ano. <em>Fonte: McKinsey Omnichannel Report 2023</em></li>
+                            <li><strong>Taxa de Conversão:</strong> +150 a 400% (5–10% vs. 1–2%), equivalente a +200 a 400 vendas/mês (ticket médio R$ 500). <em>Fonte: Gartner AI in Marketing 2024</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="benefit-block">
+                        <div class="benefit-icon">
+                            <i class="fas fa-target" aria-hidden="true"></i>
+                        </div>
+                        <h3>🎯 Geração e Gestão de Leads</h3>
+                        <ul>
+                            <li><strong>Novos Leads:</strong> +200 a 700% (300–800 vs. 50–100), impulsionados por chatbots (+80% em captação). <em>Fonte: Drift Chatbot Report 2023</em></li>
+                            <li><strong>Qualificação:</strong> +200 a 700% (60–80% vs. 10–20%), com média de +200 leads prontos para vendas/mês. <em>Fonte: Gartner 2024</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="benefit-block">
+                        <div class="benefit-icon">
+                            <i class="fas fa-cogs" aria-hidden="true"></i>
+                        </div>
+                        <h3>⚙️ Eficiência Operacional</h3>
+                        <ul>
+                            <li><strong>Redução de Custos:</strong> -30 a -50% (-R$ 160 mil/ano em suporte), com automação cortando até 40% das despesas. <em>Fonte: Gartner 2024</em></li>
+                            <li><strong>Tempo de Resposta:</strong> -90 a -99% (&lt;1min vs. 1–24h), aumentando satisfação em +25% e NPS em +20 pontos. <em>Fonte: McKinsey 2023</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="benefit-block">
+                        <div class="benefit-icon">
+                            <i class="fas fa-flag" aria-hidden="true"></i>
+                        </div>
+                        <h3>📊 Insights Específicos do Brasil</h3>
+                        <ul>
+                            <li><strong>WhatsApp</strong> domina: 99% das empresas brasileiras utilizam o app (Anatel 2024).</li>
+                            <li><strong>Chatbots</strong> geram +45% de engajamento e até 2,5x mais valor vitalício do cliente (R$ 1.500 vs. R$ 600 por lead). <em>Fonte: Gartner/McKinsey</em></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3>Conclusão Comercial: Alcance o Sucesso!</h3>
+                    <p>Os dados mostram de forma clara que o modelo <strong>tradicional está limitado</strong> e que a adoção de estratégias digitais combinadas gera <strong>crescimento acelerado, redução de custos e maior resiliência</strong> no mercado.</p>
+                    <p><strong>Não fique para trás!</strong> Entre em contato conosco e descubra como a Neon Bite pode transformar seu negócio.</p>
+                    <button class="cta-button" type="button" onclick="openWhatsApp()" aria-label="Falar com um especialista pelo WhatsApp">Fale com um Especialista</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Dashboard -->
+        <section class="dashboard" id="dashboard">
+            <div class="container">
+                <h2>Dashboard Interativo - Escolha sua Relevância</h2>
+                <div class="dashboard-controls" role="tablist" aria-label="Métricas">
+                    <button class="dashboard-btn active" type="button" role="tab" id="tab-revenue" aria-selected="true" aria-controls="revenue-panel" onclick="showDashboard('revenue', event)">Receita</button>
+                    <button class="dashboard-btn" type="button" role="tab" id="tab-leads" aria-selected="false" aria-controls="leads-panel" onclick="showDashboard('leads', event)">Leads</button>
+                    <button class="dashboard-btn" type="button" role="tab" id="tab-efficiency" aria-selected="false" aria-controls="efficiency-panel" onclick="showDashboard('efficiency', event)">Eficiência</button>
+                </div>
+                <div class="dashboard-content">
+                    <div class="dashboard-panel active" id="revenue-panel" role="tabpanel" aria-labelledby="tab-revenue">
+                        <div class="metric-card">
+                            <h4>Crescimento Anual</h4>
+                            <div class="metric-value">+400% a 1.500%</div>
+                            <div class="metric-comparison">vs. 2-5% tradicional</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Receita Adicional</h4>
+                            <div class="metric-value">R$ 216k - 300k</div>
+                            <div class="metric-comparison">por ano</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Taxa de Conversão</h4>
+                            <div class="metric-value">+150% a 400%</div>
+                            <div class="metric-comparison">5-10% vs. 1-2%</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-panel" id="leads-panel" role="tabpanel" aria-labelledby="tab-leads">
+                        <div class="metric-card">
+                            <h4>Novos Leads</h4>
+                            <div class="metric-value">+200% a 700%</div>
+                            <div class="metric-comparison">300-800 vs. 50-100</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Qualificação</h4>
+                            <div class="metric-value">+200% a 700%</div>
+                            <div class="metric-comparison">60-80% vs. 10-20%</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Retenção</h4>
+                            <div class="metric-value">+75% a 200%</div>
+                            <div class="metric-comparison">70-90% vs. 30-40%</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-panel" id="efficiency-panel" role="tabpanel" aria-labelledby="tab-efficiency">
+                        <div class="metric-card">
+                            <h4>Redução de Custos</h4>
+                            <div class="metric-value">-30% a -50%</div>
+                            <div class="metric-comparison">-R$ 160k/ano</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Tempo de Resposta</h4>
+                            <div class="metric-value">-90% a -99%</div>
+                            <div class="metric-comparison">&lt;1min vs. 1-24h</div>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Produtividade</h4>
+                            <div class="metric-value">+300% a 900%</div>
+                            <div class="metric-comparison">200-500 vs. 20-50 atendimentos/dia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+                <h2>Nosso Portfólio de Sucesso</h2>
+                <p class="portfolio-intro-text">Confira alguns dos resultados que alcançamos para nossos clientes:</p>
+                <div class="portfolio-grid">
+                    <div class="portfolio-category">
+                        <h3>Atendimento Automatizado</h3>
+                        <div class="portfolio-items">
+                            <div class="portfolio-item">
+                                <div class="placeholder">Vídeo Demo Cliente X</div>
+                            </div>
+                            <div class="portfolio-item">
+                                <div class="placeholder">Case de Sucesso Cliente Y</div>
+                            </div>
+                            <div class="portfolio-item">
+                                <div class="placeholder">Depoimento Cliente Z</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-category">
+                        <h3>Marketing Digital</h3>
+                        <div class="portfolio-items">
+                            <div class="portfolio-item">
+                                <div class="placeholder">Campanha Ads Cliente A</div>
+                            </div>
+                            <div class="portfolio-item">
+                                <div class="placeholder">Criação Conteúdo Cliente B</div>
+                            </div>
+                            <div class="portfolio-item">
+                                <div class="placeholder">Relatório ROI Cliente C</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-category">
+                        <h3>Presença Digital</h3>
+                        <div class="portfolio-items">
+                            <div class="portfolio-item">
+                                <div class="placeholder">Site Institucional Cliente D</div>
+                            </div>
+                            <div class="portfolio-item">
+                                <div class="placeholder">E-commerce Cliente E</div>
+                            </div>
+                            <div class="portfolio-item">
+                                <div class="placeholder">Identidade Visual Cliente F</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Pronto para Levar seu Negócio ao Próximo Nível?</h2>
+            <p>Entre em contato agora mesmo e descubra como podemos otimizar sua presença digital!</p>
+            <button class="cta-button" type="button" onclick="openWhatsApp()" aria-label="Entrar em contato pelo WhatsApp">Entre em Contato Conosco</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="Neon Bite Logo" loading="lazy" decoding="async">
+                    </div>
+                    <p>Sua parceira completa em otimização digital. Transformamos ideias em resultados.</p>
+                </div>
+                <div class="footer-col footer-links-group">
+                    <h4>Navegação</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#portfolio">Portfólio</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contacts">
+                    <h4>Fale Conosco</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span><a href="mailto:contato@neonbite.com" class="__cf_email__">contato@neonbite.com</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <span><a href="tel:+5511999999999" aria-label="Ligar para (11) 99999-9999">(11) 99999-9999</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                        <span>@neonbite</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <span><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp (11) 99999-9999">(11) 99999-9999</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Neon Bite. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS - na raiz -->
+    <script src="script.js"></script>
+</body>
+</html>
