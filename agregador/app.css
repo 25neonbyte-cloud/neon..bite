@@ -686,9 +686,9 @@ body {
 body::before {
   opacity: 1;
   background:
-    radial-gradient(circle 340px at var(--pointer-x) var(--pointer-y), rgba(0, 234, 255, .15), transparent 66%),
-    repeating-linear-gradient(90deg, transparent 0 46px, rgba(112, 211, 255, .038) 47px, transparent 48px),
-    repeating-linear-gradient(0deg, transparent 0 46px, rgba(112, 211, 255, .028) 47px, transparent 48px),
+    radial-gradient(circle 340px at var(--pointer-x) var(--pointer-y), rgba(0, 234, 255, .13), transparent 66%),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(112, 211, 255, .032) 47px, transparent 48px),
+    repeating-linear-gradient(0deg, transparent 0 46px, rgba(112, 211, 255, .024) 47px, transparent 48px),
     linear-gradient(180deg, transparent 0%, rgba(5, 18, 28, .08) 48%, rgba(255, 109, 34, .025) 100%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 92%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 92%, transparent 100%);
@@ -701,25 +701,25 @@ body::after {
     inset 0 -90px 130px rgba(0, 0, 0, .2);
 }
 
-.nb-data-field { opacity: 1; }
+.nb-data-field { opacity: .90; }
 
 .nb-atmosphere::before {
   left: 50%;
   bottom: -27vw;
   width: min(1320px, 145vw);
   transform: translateX(-50%) perspective(680px) rotateX(65deg);
-  border: 1px solid rgba(0, 234, 255, .48);
+  border: 1px solid rgba(0, 234, 255, .40);
   background:
-    repeating-radial-gradient(circle at 50% 50%, transparent 0 46px, rgba(0, 234, 255, .075) 47px 48px, transparent 49px 94px),
-    repeating-conic-gradient(from 0deg, rgba(81, 188, 255, .09) 0 .42deg, transparent .54deg 6deg),
-    radial-gradient(circle at 30% 34%, rgba(0, 234, 255, .22), transparent 36%),
-    radial-gradient(circle at 72% 39%, rgba(255, 122, 47, .18), transparent 35%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 46px, rgba(0, 234, 255, .062) 47px 48px, transparent 49px 94px),
+    repeating-conic-gradient(from 0deg, rgba(81, 188, 255, .075) 0 .42deg, transparent .54deg 6deg),
+    radial-gradient(circle at 30% 34%, rgba(0, 234, 255, .19), transparent 36%),
+    radial-gradient(circle at 72% 39%, rgba(255, 122, 47, .15), transparent 35%),
     radial-gradient(circle at 50% 58%, rgba(0, 91, 255, .1), transparent 43%);
   box-shadow:
-    0 -2px 30px rgba(0, 234, 255, .34),
-    0 0 68px rgba(0, 128, 255, .14),
-    inset 0 0 110px rgba(0, 122, 255, .11);
-  opacity: .9;
+    0 -2px 26px rgba(0, 234, 255, .26),
+    0 0 58px rgba(0, 128, 255, .11),
+    inset 0 0 96px rgba(0, 122, 255, .085);
+  opacity: .78;
 }
 
 .nb-atmosphere::after {
@@ -730,22 +730,22 @@ body::after {
   background: linear-gradient(90deg,
     transparent 0 3%,
     rgba(0, 234, 255, .18) 17%,
-    rgba(0, 234, 255, .78) 46%,
-    rgba(255, 122, 47, .62) 77%,
+    rgba(0, 234, 255, .66) 46%,
+    rgba(255, 122, 47, .52) 77%,
     transparent 98%);
   box-shadow:
-    0 0 24px 5px rgba(0, 198, 255, .24),
-    0 0 48px 11px rgba(255, 106, 34, .1);
-  opacity: .98;
+    0 0 21px 4px rgba(0, 198, 255, .19),
+    0 0 42px 9px rgba(255, 106, 34, .08);
+  opacity: .84;
 }
 
 .nb-shell::before {
   width: min(720px, 100vw);
   height: 610px;
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(0, 234, 255, .18), transparent 38%),
-    radial-gradient(ellipse at 62% 31%, rgba(25, 104, 255, .12), transparent 34%),
-    radial-gradient(ellipse at 42% 42%, rgba(255, 121, 43, .07), transparent 29%);
+    radial-gradient(ellipse at 50% 30%, rgba(0, 234, 255, .16), transparent 38%),
+    radial-gradient(ellipse at 62% 31%, rgba(25, 104, 255, .10), transparent 34%),
+    radial-gradient(ellipse at 42% 42%, rgba(255, 121, 43, .06), transparent 29%);
   filter: blur(3px);
 }
 
@@ -791,7 +791,7 @@ body::after {
   place-items: center;
   isolation: isolate;
   background: url("../assets/logo_s_fundo.png") center / contain no-repeat;
-  filter: saturate(1.08) brightness(1.03) contrast(1.03);
+  filter: saturate(1.06) brightness(1.00) contrast(1.03);
 }
 
 .nb-logo { opacity: 0 !important; visibility: hidden; }
@@ -800,29 +800,29 @@ body::after {
   width: 132%;
   background:
     radial-gradient(circle,
-      rgba(0, 234, 255, .32) 0%,
-      rgba(0, 119, 255, .13) 34%,
-      rgba(255, 112, 40, .07) 52%,
+      rgba(0, 234, 255, .24) 0%,
+      rgba(0, 119, 255, .10) 34%,
+      rgba(255, 112, 40, .055) 52%,
       transparent 73%);
-  filter: blur(12px);
+  filter: blur(9px);
 }
 
 .nb-logo-stage::after {
   width: 104%;
-  border-color: rgba(66, 218, 255, .23);
+  border-color: rgba(66, 218, 255, .20);
   box-shadow:
-    0 0 42px rgba(0, 234, 255, .12),
-    0 0 62px rgba(0, 117, 255, .06),
-    inset 0 0 35px rgba(0, 157, 255, .05);
+    0 0 36px rgba(0, 234, 255, .09),
+    0 0 52px rgba(0, 117, 255, .045),
+    inset 0 0 32px rgba(0, 157, 255, .04);
 }
 
 .nb-logo-orbit {
   width: 137%;
-  border-top-color: rgba(0, 234, 255, .38);
-  border-bottom-color: rgba(255, 122, 47, .24);
+  border-top-color: rgba(0, 234, 255, .29);
+  border-bottom-color: rgba(255, 122, 47, .18);
   box-shadow:
-    0 0 20px rgba(0,234,255,.15),
-    0 0 24px rgba(255,122,47,.075);
+    0 0 17px rgba(0,234,255,.11),
+    0 0 20px rgba(255,122,47,.055);
   transform: rotate(-12deg) scaleY(.56);
 }
 
@@ -833,9 +833,9 @@ body::after {
   letter-spacing: .17em;
   text-indent: .17em;
   text-shadow:
-    0 0 12px rgba(0, 234, 255, .35),
-    0 0 25px rgba(0, 234, 255, .17),
-    0 0 24px rgba(255, 122, 47, .09);
+    0 0 11px rgba(0, 234, 255, .29),
+    0 0 22px rgba(0, 234, 255, .13),
+    0 0 21px rgba(255, 122, 47, .07);
 }
 
 .nb-positioning {
@@ -852,13 +852,13 @@ body::after {
     rgba(89, 230, 255, .98) 38%,
     rgba(255, 181, 99, .33) 72%,
     transparent);
-  box-shadow: 0 0 13px rgba(0,234,255,.4);
+  box-shadow: 0 0 11px rgba(0,234,255,.32);
 }
 
 .nb-shortcuts { margin-top: 17px; gap: 15px; }
 
 .nb-shortcut {
-  border-color: rgba(var(--accent-rgb), .58);
+  border-color: rgba(var(--accent-rgb), .54);
   background:
     radial-gradient(circle at 32% 24%, rgba(255,255,255,.09), transparent 29%),
     linear-gradient(145deg, rgba(var(--accent-rgb), .105), rgba(6, 18, 27, .62));
@@ -868,24 +868,24 @@ body::after {
     inset 0 1px 0 rgba(255,255,255,.1),
     inset 0 0 18px rgba(var(--accent-rgb), .055),
     0 8px 20px rgba(0,0,0,.25),
-    0 0 18px rgba(var(--accent-rgb), .12);
+    0 0 16px rgba(var(--accent-rgb), .09);
 }
 
 .nb-shortcut::before {
-  background: radial-gradient(circle at var(--card-x) var(--card-y), rgba(var(--accent-rgb), .44), transparent 40%);
-  opacity: .55;
+  background: radial-gradient(circle at var(--card-x) var(--card-y), rgba(var(--accent-rgb), .38), transparent 40%);
+  opacity: .48;
 }
 
 .nb-shortcut svg {
   stroke: #f4fdff;
-  filter: drop-shadow(0 0 6px rgba(var(--accent-rgb), .52));
+  filter: drop-shadow(0 0 6px rgba(var(--accent-rgb), .44));
 }
 
 .nb-links { margin-top: 20px; }
 .nb-card-grid { gap: 12px; margin-top: 12px; }
 
 .nb-card {
-  border-color: rgba(var(--accent-rgb), .7);
+  border-color: rgba(var(--accent-rgb), .63);
   background:
     radial-gradient(circle at var(--card-x) var(--card-y), rgba(var(--accent-rgb), .09), transparent 38%),
     linear-gradient(135deg,
@@ -894,34 +894,34 @@ body::after {
       rgba(5, 16, 24, .66) 66%,
       rgba(var(--accent2-rgb), .13)),
     rgba(5, 16, 24, .56);
-  -webkit-backdrop-filter: blur(20px) saturate(178%);
-  backdrop-filter: blur(20px) saturate(178%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+  backdrop-filter: blur(20px) saturate(165%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.14),
-    inset 0 -1px 0 rgba(var(--accent-rgb), .2),
-    inset 0 0 34px rgba(var(--accent-rgb), .045),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(var(--accent-rgb), .16),
+    inset 0 0 30px rgba(var(--accent-rgb), .038),
     0 12px 29px rgba(0,0,0,.29),
-    0 0 24px rgba(var(--accent-rgb), .14);
+    0 0 21px rgba(var(--accent-rgb), .10);
 }
 
 .nb-card::before {
   background:
-    radial-gradient(circle 200px at var(--card-x) var(--card-y), rgba(var(--accent-rgb), .38), transparent 55%),
+    radial-gradient(circle 200px at var(--card-x) var(--card-y), rgba(var(--accent-rgb), .31), transparent 55%),
     linear-gradient(110deg,
       transparent 8%,
       rgba(255,255,255,.045) 31%,
-      rgba(255,255,255,.12) 47%,
+      rgba(255,255,255,.10) 47%,
       transparent 60%);
-  opacity: .56;
+  opacity: .48;
 }
 
 .nb-card::after {
   background:
     linear-gradient(155deg,
-      rgba(255,255,255,.08),
+      rgba(255,255,255,.07),
       transparent 21%,
       transparent 72%,
-      rgba(var(--accent-rgb), .07));
+      rgba(var(--accent-rgb), .055));
 }
 
 .nb-card--whatsapp {
@@ -940,23 +940,23 @@ body::after {
 }
 
 .nb-card-icon {
-  border-color: rgba(var(--accent-rgb), .43);
+  border-color: rgba(var(--accent-rgb), .39);
   background:
     radial-gradient(circle at 30% 23%, rgba(255,255,255,.13), transparent 28%),
-    rgba(var(--accent-rgb), .135);
+    rgba(var(--accent-rgb), .115);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.11),
-    inset 0 0 18px rgba(var(--accent-rgb), .08),
-    0 0 26px rgba(var(--accent-rgb), .2);
+    inset 0 0 17px rgba(var(--accent-rgb), .065),
+    0 0 22px rgba(var(--accent-rgb), .15);
 }
 
 .nb-card-icon::after {
-  box-shadow: inset 0 0 17px rgba(var(--accent-rgb), .16);
+  box-shadow: inset 0 0 15px rgba(var(--accent-rgb), .13);
 }
 
 .nb-card-icon svg {
   stroke: rgb(var(--accent-rgb));
-  filter: drop-shadow(0 0 8px rgba(var(--accent-rgb), .62));
+  filter: drop-shadow(0 0 7px rgba(var(--accent-rgb), .50));
 }
 
 .nb-card-copy strong {
@@ -967,17 +967,17 @@ body::after {
 .nb-card-copy > span { color: #d9e8ef; }
 
 .nb-arrow {
-  border-color: rgba(var(--accent-rgb), .78);
+  border-color: rgba(var(--accent-rgb), .70);
   background:
-    radial-gradient(circle, rgba(var(--accent-rgb), .13), rgba(var(--accent-rgb), .045) 61%, transparent 62%);
+    radial-gradient(circle, rgba(var(--accent-rgb), .10), rgba(var(--accent-rgb), .04) 61%, transparent 62%);
   box-shadow:
-    inset 0 0 14px rgba(var(--accent-rgb), .13),
-    0 0 17px rgba(var(--accent-rgb), .17);
+    inset 0 0 13px rgba(var(--accent-rgb), .10),
+    0 0 15px rgba(var(--accent-rgb), .13);
 }
 
 .nb-arrow svg {
   stroke: #ffffff;
-  filter: drop-shadow(0 0 5px rgba(var(--accent-rgb), .35));
+  filter: drop-shadow(0 0 4px rgba(var(--accent-rgb), .30));
 }
 
 .nb-footer { color: #9fb9c8; }
@@ -995,22 +995,22 @@ body::after {
 
 @media (hover: hover) and (pointer: fine) {
   .nb-card:hover {
-    border-color: rgba(var(--accent-rgb), .95);
+    border-color: rgba(var(--accent-rgb), .86);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.17),
-      inset 0 -1px 0 rgba(var(--accent-rgb), .24),
-      inset 0 0 38px rgba(var(--accent-rgb), .065),
+      inset 0 1px 0 rgba(255,255,255,.15),
+      inset 0 -1px 0 rgba(var(--accent-rgb), .19),
+      inset 0 0 34px rgba(var(--accent-rgb), .05),
       0 14px 32px rgba(0,0,0,.3),
-      0 0 33px rgba(var(--accent-rgb), .25);
+      0 0 28px rgba(var(--accent-rgb), .19);
   }
-  .nb-card:hover::before { opacity: .95; }
+  .nb-card:hover::before { opacity: .86; }
 
   .nb-shortcut:hover {
-    border-color: rgba(var(--accent-rgb), .92);
+    border-color: rgba(var(--accent-rgb), .84);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.14),
       0 9px 22px rgba(0,0,0,.25),
-      0 0 25px rgba(var(--accent-rgb), .23);
+      0 0 21px rgba(var(--accent-rgb), .17);
   }
 }
 
