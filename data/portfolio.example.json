@@ -1,0 +1,15 @@
+{
+  "projects": [
+    {
+      "id": "identificador-unico",
+      "title": "Nome do projeto",
+      "category": "marketing",
+      "categoryLabel": "Marketing Digital",
+      "description": "Descrição curta do trabalho e do valor entregue.",
+      "image": "assets/portfolio/nome-do-arquivo.webp",
+      "alt": "Descrição objetiva da imagem do projeto",
+      "result": "Resultado ou destaque opcional",
+      "url": "#"
+    }
+  ]
+}
