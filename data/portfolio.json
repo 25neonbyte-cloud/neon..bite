@@ -1,3 +1,54 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "id": "rhema-rebranding-presenca-digital",
+      "title": "RHEMA — Rebranding e Presença Digital",
+      "category": "presence",
+      "categoryLabel": "Presença Digital • Rebranding",
+      "description": "Modernização da identidade de uma mecânica tradicional, criação da nova linguagem visual e implantação do Google Meu Negócio para tornar a empresa encontrável e facilitar o contato.",
+      "result": "Na primeira semana, o cliente relatou mais contatos que o habitual e já recebeu um pedido de orçamento.",
+      "image": "assets/portfolio/rhema.svg",
+      "alt": "Material visual desenvolvido para a RHEMA Autoelétrica e Mecânica em Geral"
+    },
+    {
+      "id": "warley-presenca-digital",
+      "title": "Warley Mudanças e Transportes — Presença Digital",
+      "category": "presence",
+      "categoryLabel": "Presença Digital • Google Meu Negócio",
+      "description": "Criação da presença digital do zero para um profissional de fretes, com Google Meu Negócio funcional, tratamento das fotografias reais do caminhão e reformulação completa do cartão de visitas.",
+      "result": "Negócio passou a ser encontrável nas buscas, com comunicação visual atualizada e aprovação do cliente.",
+      "image": "assets/portfolio/warley.svg",
+      "alt": "Material de divulgação desenvolvido para Warley Mudanças e Transportes"
+    },
+    {
+      "id": "banana-cafe-branding-motion",
+      "title": "Banana Café — Branding e Sistema de Comunicação",
+      "category": "marketing",
+      "categoryLabel": "Branding • Motion Design",
+      "description": "Sistema completo de identidade e comunicação: marca, manual, cardápios, avisos, materiais administrativos, papelaria e motion design para apresentação dinâmica de produtos, preços e campanhas em telas.",
+      "result": "Escopo contratado integralmente desenvolvido e entregue, incluindo solução audiovisual funcional e preparada para atualização.",
+      "image": "assets/portfolio/banana-cafe.svg",
+      "alt": "Cardápio desenvolvido para o Banana Café como parte do sistema de identidade e comunicação"
+    },
+    {
+      "id": "black-night-cartao-identidade",
+      "title": "Black Night — Identidade Aplicada",
+      "category": "presence",
+      "categoryLabel": "Identidade Visual • Papelaria",
+      "description": "Desenvolvimento de frente e verso de cartão de visitas para eletricista autônomo, criando uma linguagem visual própria a partir do nome Black Night solicitado pelo cliente.",
+      "result": "A identidade continua em uso cerca de oito anos depois e foi adotada pelo profissional também em seu uniforme.",
+      "image": "assets/portfolio/black-night.svg",
+      "alt": "Frente do cartão de visitas Black Night desenvolvido para eletricista"
+    },
+    {
+      "id": "mhc-aviamentos-identidade",
+      "title": "MHC Aviamentos — Identidade Visual",
+      "category": "presence",
+      "categoryLabel": "Identidade Visual • Papelaria",
+      "description": "Criação da linguagem visual e do cartão de visitas frente e verso para uma pequena empresa de aviamentos, organizando identidade, apresentação comercial e canais de contato.",
+      "result": "A identidade foi mantida pela empresa durante aproximadamente três anos de atividade.",
+      "image": "assets/portfolio/mhc-aviamentos.svg",
+      "alt": "Frente do cartão de visitas desenvolvido para MHC Aviamentos"
+    }
+  ]
 }
