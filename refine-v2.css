@@ -77,3 +77,19 @@ main,.section,.section-inner,.hero__layout,.cta-layout,.service-carousel,.servic
   .portfolio-case-viewer__viewport{flex:none;max-height:72dvh}
   .portfolio-case-viewer__viewport.is-zoomed img{width:165%}
 }
+
+
+/* Sequência PNG — navegação página a página */
+.portfolio-case-viewer__controls{display:flex;align-items:center;justify-content:flex-end;gap:7px;min-width:0}
+.portfolio-case-viewer__controls span{min-width:46px;text-align:center;color:#9fb7c3;font-size:.68rem;font-variant-numeric:tabular-nums}
+.portfolio-case-viewer__controls button{min-width:34px;height:30px;display:inline-grid;place-items:center;padding:0 9px}
+.portfolio-case-viewer__controls button[data-case-prev],
+.portfolio-case-viewer__controls button[data-case-next]{font-size:1.05rem;font-weight:700;padding:0;width:34px}
+.portfolio-case-viewer__controls button:disabled{opacity:.32;cursor:not-allowed;border-color:rgba(255,255,255,.10);color:#78909c}
+.portfolio-case-viewer__viewport img{image-rendering:auto}
+@media(max-width:520px){
+  .portfolio-case-viewer__bar{height:auto;min-height:52px;flex-wrap:wrap;padding:8px 10px;gap:7px}
+  .portfolio-case-viewer__controls{width:100%;justify-content:space-between}
+  .portfolio-case-viewer__controls span{flex:1}
+  .portfolio-case-viewer__controls button[data-case-zoom]{min-width:72px}
+}
