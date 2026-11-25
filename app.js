@@ -265,16 +265,34 @@
         ${projects.length?'':'<div class="portfolio-empty__slots"><span>Thumbnail / vídeo</span><span>Contexto do projeto</span><span>Resultado / entrega</span></div>'}
       </div></div>`;bindGlass(portfolioGrid);return;
     }
-    portfolioGrid.innerHTML=filtered.map(p=>`<article class="portfolio-card glass interactive-glass">
-      <div class="portfolio-card__media">${p.video
-        ? `<video src="${esc(p.video)}" poster="${esc(p.image||'')}" aria-label="${esc(p.alt||p.title)}" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:${p.fit==='cover'?'cover':'contain'};display:block"></video>`
-        : `<img src="${esc(p.image)}" alt="${esc(p.alt||p.title)}" loading="lazy" decoding="async" style="object-fit:${p.fit==='cover'?'cover':'contain'}"/>`
-      }</div>
+    portfolioGrid.innerHTML=filtered.map(p=>`<article class="portfolio-card glass interactive-glass ${p.status?'portfolio-card--ongoing':''}">
+      ${p.beforeImage&&p.afterImage
+        ? `<div class="portfolio-card__media portfolio-compare" data-compare style="--compare:50%">
+            <img class="portfolio-compare__image portfolio-compare__before" src="${esc(p.beforeImage)}" alt="${esc(p.beforeAlt||'Antes')}" loading="lazy" decoding="async"/>
+            <img class="portfolio-compare__image portfolio-compare__after" src="${esc(p.afterImage)}" alt="${esc(p.afterAlt||'Depois')}" loading="lazy" decoding="async"/>
+            <span class="portfolio-compare__label portfolio-compare__label--before">ANTES</span>
+            <span class="portfolio-compare__label portfolio-compare__label--after">DEPOIS</span>
+            ${p.status?`<span class="portfolio-card__status"><i></i>${esc(p.status)}</span>`:''}
+            <span class="portfolio-compare__divider" aria-hidden="true"><i>↔</i></span>
+            <input class="portfolio-compare__range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois de ${esc(p.title)}"/>
+          </div>`
+        : `<div class="portfolio-card__media">${p.video
+          ? `<video src="${esc(p.video)}" poster="${esc(p.image||'')}" aria-label="${esc(p.alt||p.title)}" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:${p.fit==='cover'?'cover':'contain'};display:block"></video>`
+          : `<img src="${esc(p.image)}" alt="${esc(p.alt||p.title)}" loading="lazy" decoding="async" style="object-fit:${p.fit==='cover'?'cover':'contain'}"/>`
+        }</div>`
+      }
       <div class="portfolio-card__body"><span class="portfolio-card__tag">${esc(p.categoryLabel||p.category)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
       ${p.result?`<div class="portfolio-card__result">${esc(p.result)}</div>`:''}${p.url?`<a class="portfolio-card__link" href="${esc(p.url)}" ${p.url.startsWith('http')?'target="_blank" rel="noopener noreferrer"':''}>Ver case <span>→</span></a>`:''}</div>
     </article>`).join('');
+    $$('.portfolio-compare__range',portfolioGrid).forEach(input=>{
+      const compare=input.closest('[data-compare]');
+      const update=()=>compare?.style.setProperty('--compare',`${input.value}%`);
+      input.addEventListener('input',update);
+      input.addEventListener('change',update);
+      update();
+    });
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-      $('video',portfolioGrid).forEach(video=>{video.pause();video.removeAttribute('autoplay');});
+      $$('video',portfolioGrid).forEach(video=>{video.pause();video.removeAttribute('autoplay');});
     }
     bindGlass(portfolioGrid);
   };
