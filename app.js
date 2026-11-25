@@ -253,6 +253,68 @@
   const portfolioGrid=$('#portfolio-grid'), portfolioFilters=$('#portfolio-filters'), filterButtons=$$('.filter-btn');
   let projects=[],currentFilter='all';
   const esc=v=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+
+  const ensurePortfolioCaseDialog=()=>{
+    let dialog=$('#portfolio-case-dialog');
+    if(dialog)return dialog;
+    document.body.insertAdjacentHTML('beforeend',`
+      <dialog class="portfolio-case-dialog" id="portfolio-case-dialog" aria-labelledby="portfolio-case-dialog-title">
+        <div class="portfolio-case-dialog__shell">
+          <button type="button" class="portfolio-case-dialog__close" data-case-close aria-label="Fechar comparação">×</button>
+          <header class="portfolio-case-dialog__header">
+            <div>
+              <span class="portfolio-case-dialog__eyebrow">ANTES / DEPOIS</span>
+              <h2 id="portfolio-case-dialog-title"></h2>
+            </div>
+            <span class="portfolio-case-dialog__status" data-case-status hidden><i></i><b></b></span>
+          </header>
+          <div class="portfolio-case-viewers">
+            <section class="portfolio-case-viewer">
+              <div class="portfolio-case-viewer__bar"><strong>ANTES</strong><button type="button" data-case-zoom="before">Ampliar</button></div>
+              <div class="portfolio-case-viewer__viewport" data-case-viewport="before"><img data-case-image="before" alt=""/></div>
+            </section>
+            <section class="portfolio-case-viewer">
+              <div class="portfolio-case-viewer__bar"><strong>DEPOIS</strong><button type="button" data-case-zoom="after">Ampliar</button></div>
+              <div class="portfolio-case-viewer__viewport" data-case-viewport="after"><img data-case-image="after" alt=""/></div>
+            </section>
+          </div>
+        </div>
+      </dialog>`);
+    dialog=$('#portfolio-case-dialog');
+    $('[data-case-close]',dialog)?.addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+    dialog.addEventListener('close',()=>{
+      document.body.classList.remove('case-dialog-open');
+      $$('[data-case-viewport]',dialog).forEach(v=>v.classList.remove('is-zoomed'));
+      $$('[data-case-zoom]',dialog).forEach(b=>b.textContent='Ampliar');
+    });
+    $$('[data-case-zoom]',dialog).forEach(btn=>btn.addEventListener('click',()=>{
+      const viewport=$(`[data-case-viewport="${btn.dataset.caseZoom}"]`,dialog);
+      if(!viewport)return;
+      const zoomed=viewport.classList.toggle('is-zoomed');
+      btn.textContent=zoomed?'Reduzir':'Ampliar';
+      if(!zoomed)viewport.scrollTo({top:0,left:0,behavior:'smooth'});
+    }));
+    return dialog;
+  };
+
+  const openPortfolioCase=p=>{
+    if(!p?.beforeImage||!p?.afterImage)return;
+    const dialog=ensurePortfolioCaseDialog();
+    $('#portfolio-case-dialog-title',dialog).textContent=p.title||'Comparação do projeto';
+    const before=$('[data-case-image="before"]',dialog),after=$('[data-case-image="after"]',dialog);
+    before.src=p.beforeImage; before.alt=p.beforeAlt||'Antes do projeto';
+    after.src=p.afterImage; after.alt=p.afterAlt||'Depois do projeto';
+    const status=$('[data-case-status]',dialog);
+    if(p.status){
+      status.hidden=false;
+      $('b',status).textContent=p.status;
+    }else status.hidden=true;
+    document.body.classList.add('case-dialog-open');
+    if(typeof dialog.showModal==='function')dialog.showModal();
+    else dialog.setAttribute('open','');
+  };
+
   const renderPortfolio=()=>{
     if(!portfolioGrid)return;
     const filtered=currentFilter==='all'?projects:projects.filter(p=>p.category===currentFilter);
@@ -267,14 +329,19 @@
     }
     portfolioGrid.innerHTML=filtered.map(p=>`<article class="portfolio-card glass interactive-glass ${p.status?'portfolio-card--ongoing':''}">
       ${p.beforeImage&&p.afterImage
-        ? `<div class="portfolio-card__media portfolio-compare" data-compare style="--compare:50%">
-            <img class="portfolio-compare__image portfolio-compare__before" src="${esc(p.beforeImage)}" alt="${esc(p.beforeAlt||'Antes')}" loading="lazy" decoding="async"/>
-            <img class="portfolio-compare__image portfolio-compare__after" src="${esc(p.afterImage)}" alt="${esc(p.afterAlt||'Depois')}" loading="lazy" decoding="async"/>
-            <span class="portfolio-compare__label portfolio-compare__label--before">ANTES</span>
-            <span class="portfolio-compare__label portfolio-compare__label--after">DEPOIS</span>
+        ? `<div class="portfolio-card__media portfolio-card__media--case">
+            <button type="button" class="portfolio-case-preview" data-case-open="${esc(p.id)}" aria-label="Abrir comparação antes e depois de ${esc(p.title)}">
+              <span class="portfolio-case-preview__pane">
+                <img src="${esc(p.beforeImage)}" alt="${esc(p.beforeAlt||'Antes')}" loading="lazy" decoding="async"/>
+                <span class="portfolio-case-preview__label">ANTES</span>
+              </span>
+              <span class="portfolio-case-preview__pane">
+                <img src="${esc(p.afterImage)}" alt="${esc(p.afterAlt||'Depois')}" loading="lazy" decoding="async"/>
+                <span class="portfolio-case-preview__label portfolio-case-preview__label--after">DEPOIS</span>
+              </span>
+              <span class="portfolio-case-preview__action">Ver comparação ampliada <b>↗</b></span>
+            </button>
             ${p.status?`<span class="portfolio-card__status"><i></i>${esc(p.status)}</span>`:''}
-            <span class="portfolio-compare__divider" aria-hidden="true"><i>↔</i></span>
-            <input class="portfolio-compare__range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois de ${esc(p.title)}"/>
           </div>`
         : `<div class="portfolio-card__media">${p.video
           ? `<video src="${esc(p.video)}" poster="${esc(p.image||'')}" aria-label="${esc(p.alt||p.title)}" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:${p.fit==='cover'?'cover':'contain'};display:block"></video>`
@@ -282,15 +349,14 @@
         }</div>`
       }
       <div class="portfolio-card__body"><span class="portfolio-card__tag">${esc(p.categoryLabel||p.category)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
-      ${p.result?`<div class="portfolio-card__result">${esc(p.result)}</div>`:''}${p.url?`<a class="portfolio-card__link" href="${esc(p.url)}" ${p.url.startsWith('http')?'target="_blank" rel="noopener noreferrer"':''}>Ver case <span>→</span></a>`:''}</div>
+      ${p.result?`<div class="portfolio-card__result">${esc(p.result)}</div>`:''}
+      ${p.beforeImage&&p.afterImage?`<button type="button" class="portfolio-card__link portfolio-card__case-link" data-case-open="${esc(p.id)}">Ver comparação <span>→</span></button>`:p.url?`<a class="portfolio-card__link" href="${esc(p.url)}" ${p.url.startsWith('http')?'target="_blank" rel="noopener noreferrer"':''}>Ver case <span>→</span></a>`:''}</div>
     </article>`).join('');
-    $$('.portfolio-compare__range',portfolioGrid).forEach(input=>{
-      const compare=input.closest('[data-compare]');
-      const update=()=>compare?.style.setProperty('--compare',`${input.value}%`);
-      input.addEventListener('input',update);
-      input.addEventListener('change',update);
-      update();
-    });
+
+    $$('[data-case-open]',portfolioGrid).forEach(btn=>btn.addEventListener('click',()=>{
+      const project=projects.find(p=>String(p.id)===String(btn.dataset.caseOpen));
+      if(project)openPortfolioCase(project);
+    }));
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){
       $$('video',portfolioGrid).forEach(video=>{video.pause();video.removeAttribute('autoplay');});
     }
