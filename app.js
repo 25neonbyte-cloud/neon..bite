@@ -266,10 +266,17 @@
       </div></div>`;bindGlass(portfolioGrid);return;
     }
     portfolioGrid.innerHTML=filtered.map(p=>`<article class="portfolio-card glass interactive-glass">
-      <div class="portfolio-card__media"><img src="${esc(p.image)}" alt="${esc(p.alt||p.title)}" loading="lazy"/></div>
+      <div class="portfolio-card__media">${p.video
+        ? `<video src="${esc(p.video)}" poster="${esc(p.image||'')}" aria-label="${esc(p.alt||p.title)}" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:${p.fit==='cover'?'cover':'contain'};display:block"></video>`
+        : `<img src="${esc(p.image)}" alt="${esc(p.alt||p.title)}" loading="lazy" decoding="async" style="object-fit:${p.fit==='cover'?'cover':'contain'}"/>`
+      }</div>
       <div class="portfolio-card__body"><span class="portfolio-card__tag">${esc(p.categoryLabel||p.category)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
       ${p.result?`<div class="portfolio-card__result">${esc(p.result)}</div>`:''}${p.url?`<a class="portfolio-card__link" href="${esc(p.url)}" ${p.url.startsWith('http')?'target="_blank" rel="noopener noreferrer"':''}>Ver case <span>→</span></a>`:''}</div>
-    </article>`).join('');bindGlass(portfolioGrid);
+    </article>`).join('');
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+      $('video',portfolioGrid).forEach(video=>{video.pause();video.removeAttribute('autoplay');});
+    }
+    bindGlass(portfolioGrid);
   };
   fetch('data/portfolio.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(data=>{projects=Array.isArray(data.projects)?data.projects:[];renderPortfolio();}).catch(()=>{projects=[];renderPortfolio();});
   filterButtons.forEach(btn=>btn.addEventListener('click',()=>{currentFilter=btn.dataset.filter;filterButtons.forEach(b=>b.classList.toggle('is-active',b===btn));renderPortfolio();}));
