@@ -270,24 +270,77 @@
           </header>
           <div class="portfolio-case-viewers">
             <section class="portfolio-case-viewer">
-              <div class="portfolio-case-viewer__bar"><strong>ANTES</strong><button type="button" data-case-zoom="before">Ampliar</button></div>
+              <div class="portfolio-case-viewer__bar">
+                <strong>ANTES</strong>
+                <div class="portfolio-case-viewer__controls">
+                  <button type="button" data-case-prev="before" aria-label="Página anterior do portfólio antigo">‹</button>
+                  <span data-case-counter="before">1 / 1</span>
+                  <button type="button" data-case-next="before" aria-label="Próxima página do portfólio antigo">›</button>
+                  <button type="button" data-case-zoom="before">Ampliar</button>
+                </div>
+              </div>
               <div class="portfolio-case-viewer__viewport" data-case-viewport="before"><img data-case-image="before" alt=""/></div>
             </section>
             <section class="portfolio-case-viewer">
-              <div class="portfolio-case-viewer__bar"><strong>DEPOIS</strong><button type="button" data-case-zoom="after">Ampliar</button></div>
+              <div class="portfolio-case-viewer__bar">
+                <strong>DEPOIS</strong>
+                <div class="portfolio-case-viewer__controls">
+                  <button type="button" data-case-prev="after" aria-label="Página anterior do portfólio remasterizado">‹</button>
+                  <span data-case-counter="after">1 / 1</span>
+                  <button type="button" data-case-next="after" aria-label="Próxima página do portfólio remasterizado">›</button>
+                  <button type="button" data-case-zoom="after">Ampliar</button>
+                </div>
+              </div>
               <div class="portfolio-case-viewer__viewport" data-case-viewport="after"><img data-case-image="after" alt=""/></div>
             </section>
           </div>
         </div>
       </dialog>`);
     dialog=$('#portfolio-case-dialog');
+
+    const renderSide=side=>{
+      const state=dialog._caseState;
+      if(!state)return;
+      const pages=state[side+'Pages']||[];
+      const index=Math.max(0,Math.min((state[side+'Index']||0),Math.max(0,pages.length-1)));
+      state[side+'Index']=index;
+      const img=$(`[data-case-image="${side}"]`,dialog);
+      const counter=$(`[data-case-counter="${side}"]`,dialog);
+      const prev=$(`[data-case-prev="${side}"]`,dialog);
+      const next=$(`[data-case-next="${side}"]`,dialog);
+      if(img){
+        img.src=pages[index]||'';
+        img.alt=`${state[side+'Alt']||side} — página ${index+1} de ${pages.length}`;
+      }
+      if(counter)counter.textContent=`${pages.length?index+1:0} / ${pages.length}`;
+      if(prev)prev.disabled=index<=0;
+      if(next)next.disabled=index>=pages.length-1;
+      const viewport=$(`[data-case-viewport="${side}"]`,dialog);
+      viewport?.scrollTo({top:0,left:0});
+    };
+    dialog._renderSide=renderSide;
+
     $('[data-case-close]',dialog)?.addEventListener('click',()=>dialog.close());
     dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
     dialog.addEventListener('close',()=>{
       document.body.classList.remove('case-dialog-open');
       $$('[data-case-viewport]',dialog).forEach(v=>v.classList.remove('is-zoomed'));
       $$('[data-case-zoom]',dialog).forEach(b=>b.textContent='Ampliar');
+      dialog._caseState=null;
     });
+    $$('[data-case-prev]',dialog).forEach(btn=>btn.addEventListener('click',()=>{
+      const side=btn.dataset.casePrev,state=dialog._caseState;
+      if(!state)return;
+      state[side+'Index']=Math.max(0,(state[side+'Index']||0)-1);
+      renderSide(side);
+    }));
+    $$('[data-case-next]',dialog).forEach(btn=>btn.addEventListener('click',()=>{
+      const side=btn.dataset.caseNext,state=dialog._caseState;
+      if(!state)return;
+      const pages=state[side+'Pages']||[];
+      state[side+'Index']=Math.min(Math.max(0,pages.length-1),(state[side+'Index']||0)+1);
+      renderSide(side);
+    }));
     $$('[data-case-zoom]',dialog).forEach(btn=>btn.addEventListener('click',()=>{
       const viewport=$(`[data-case-viewport="${btn.dataset.caseZoom}"]`,dialog);
       if(!viewport)return;
@@ -299,12 +352,18 @@
   };
 
   const openPortfolioCase=p=>{
-    if(!p?.beforeImage||!p?.afterImage)return;
+    const beforePages=Array.isArray(p?.beforePages)&&p.beforePages.length?p.beforePages:(p?.beforeImage?[p.beforeImage]:[]);
+    const afterPages=Array.isArray(p?.afterPages)&&p.afterPages.length?p.afterPages:(p?.afterImage?[p.afterImage]:[]);
+    if(!beforePages.length||!afterPages.length)return;
     const dialog=ensurePortfolioCaseDialog();
     $('#portfolio-case-dialog-title',dialog).textContent=p.title||'Comparação do projeto';
-    const before=$('[data-case-image="before"]',dialog),after=$('[data-case-image="after"]',dialog);
-    before.src=p.beforeImage; before.alt=p.beforeAlt||'Antes do projeto';
-    after.src=p.afterImage; after.alt=p.afterAlt||'Depois do projeto';
+    dialog._caseState={
+      beforePages,afterPages,beforeIndex:0,afterIndex:0,
+      beforeAlt:p.beforeAlt||'Portfólio antigo',
+      afterAlt:p.afterAlt||'Portfólio remasterizado'
+    };
+    dialog._renderSide?.('before');
+    dialog._renderSide?.('after');
     const status=$('[data-case-status]',dialog);
     if(p.status){
       status.hidden=false;
@@ -339,7 +398,7 @@
                 <img src="${esc(p.afterImage)}" alt="${esc(p.afterAlt||'Depois')}" loading="lazy" decoding="async"/>
                 <span class="portfolio-case-preview__label portfolio-case-preview__label--after">DEPOIS</span>
               </span>
-              <span class="portfolio-case-preview__action">Ver comparação ampliada <b>↗</b></span>
+              <span class="portfolio-case-preview__action">${(p.beforePages?.length||1)} páginas → ${(p.afterPages?.length||1)} páginas <b>↗</b></span>
             </button>
             ${p.status?`<span class="portfolio-card__status"><i></i>${esc(p.status)}</span>`:''}
           </div>`
